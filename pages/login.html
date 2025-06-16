@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Explorer</title>
+    <link rel="stylesheet" href="/pages/style.css">
+    <link rel="stylesheet" href="style/header.css">
+</head>
+<body>
+
+<div class="login-container">
+
+    <main>
+        <div class="form-container">
+            <div class="form-header">
+                <h1>Авторизация</h1>
+            </div>
+            <div class="form-body">
+                <form id="loginForm" method="POST">
+                    <label for="username">Введите юзернейм</label>
+                    <input class="username" id="username"  name="username" placeholder="юзернейм"/>
+
+                    <label for="password">Введите пароль</label>
+                    <input type="password" class="password" name="password" id="password" placeholder="пароль"/>
+
+                    <button type="submit" class="auth-button">войти</button>
+                </form>
+            </div>
+            <div style="text-align: center; margin-top: 10px;">
+                <a href="registration.html" style="color: white">Нет аккаунта?</a>
+            </div>
+        </div>
+    </main>
+</div>
+<script type="module" src="../pages/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="../loadHeader.js"></script>
+</body>
+</html>

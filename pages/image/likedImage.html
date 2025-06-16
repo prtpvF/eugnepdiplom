@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liked Images</title>
+</head>
+<link rel="stylesheet" href="../style/likedImages.css">
+<link rel="stylesheet" href="../style/header.css">
+<body>
+
+<main class="container">
+    <h1 style="margin-left: 4%; height: 10px; text-align: center; color: cadetblue">Понравившиеся публикации</h1>
+    <h2 style="margin-left: 4%; height: 10px; color: black; display: none" id="no-data-message">Упс... Здесь пусто</h2>
+    <div class="photo-grid" id="photoGrid">
+
+    </div>
+
+    <div class="gallery-controls">
+        <div class="pagination">
+            <button id="prevPageBtn" class="btn btn-prev">‹ Назад</button>
+            <span id="pageInfo"></span>
+            <button id="nextPageBtn" class="btn btn-next">Вперед ›</button>
+        </div>
+    </div>
+</main>
+
+
+</body>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="module" src="/likeImages.js"></script>
+<script src="/loadHeader.js"></script>
+<script src="/loadFooter.js"></script>
+</html>

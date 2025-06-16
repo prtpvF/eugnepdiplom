@@ -1,0 +1,836 @@
+/* Основные стили */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+}
+
+.main-container {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 80px;
+}
+
+.add-photo-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.add-photo-button {
+    background-color: cadetblue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+}
+
+.add-photo-button:hover {
+    background-color: #3a7d7e;
+}
+
+.upload-form-container {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f9f9f9;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.file-label {
+    display: block;
+    padding: 10px;
+    background: #eee;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s;
+}
+
+.file-label:hover {
+    background: #ddd;
+}
+
+#photo-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.submit-btn, .cancel-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 5px;
+}
+
+/* Добавьте эти стили */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    z-index: 1001;
+    width: 90%;
+    max-width: 500px;
+    padding: 25px;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: #333;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.file-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border: 2px dashed cadetblue;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    min-height: 150px;
+}
+
+.file-label:hover {
+    background-color: rgba(95, 158, 160, 0.05);
+    border-color: #5f9ea0;
+}
+
+.file-label svg {
+    margin-bottom: 15px;
+    stroke: #5f9ea0;
+}
+
+#file-name {
+    color: #555;
+    font-size: 1rem;
+    word-break: break-word;
+    max-width: 100%;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.submit-btn {
+    background-color: cadetblue;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #4a8b8d;
+}
+
+.cancel-btn {
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.cancel-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Кнопка добавления фото в основном интерфейсе */
+.add-photo-button {
+    background-color: cadetblue;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+}
+
+/* Стили для превью изображения */
+.file-label {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-preview {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview-image {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .preview-image {
+        max-height: 150px;
+    }
+}
+
+.add-photo-button:hover {
+    background-color: #4a8b8d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.add-photo-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.submit-btn {
+    background-color: cadetblue;
+    color: white;
+}
+
+.cancel-btn {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.submit-btn:hover {
+    background-color: #3a7d7e;
+}
+
+.cancel-btn:hover {
+    background-color: #e0e0e0;
+}
+
+
+.content-row {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    min-height: 20vh;
+}
+
+.map-container {
+    width: 40%; /* Фиксированная ширина */
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 300px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+#map {
+    height: 110%!important;
+    width: 100%;
+    background: #f0f5f5;
+}
+
+.description-container {
+    padding: 20px;
+    font-size: 20px;
+    border: #8e8e8e solid 2px;
+    border-radius: 20px;
+    height: 250px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    min-width: 150px;
+    width: 50%;
+    background-color: rgb(85, 255, 209);
+    word-wrap: break-word;
+    overflow-x: hidden;
+}
+
+.description {
+    white-space: pre-wrap;
+    word-break: break-word;
+    width: 100%;
+    padding-right: 10px;
+}
+
+.route-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+
+.simple-carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.single-image-container {
+    width: 100%;
+    max-width: 800px;
+    height: 200px;
+    aspect-ratio: 16/6;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.image-container:hover {
+    .instagram-note {
+        display: block;
+    }
+}
+
+.single-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.multi-carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    position: relative;
+}
+
+#multi-image-container.one-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.multi-image-container.double-image {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.multi-image-container {
+    display: flex;
+    gap: 15px;
+    width: calc(100% - 100px);
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+.comments-section {
+    margin-top: 40px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.comments-section h3 {
+    margin-top: 0;
+    color: cadetblue;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.comments-container {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-right: 10px;
+    flex: 1;
+}
+
+.comment-form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: sticky;
+    bottom: 20px;
+    margin-top: 20px;
+}
+
+.comment {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+footer {
+    background: #333;
+    padding: 20px !important;
+    margin-top: auto !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.comment-text {
+    color: #555;
+    line-height: 1.5;
+}
+
+.comment-date {
+    font-size: 0.8rem;
+    color: #999;
+    text-align: right;
+    margin-top: 10px;
+}
+
+.comment-form .form-group {
+    margin-bottom: 15px;
+}
+
+.comment-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.comment-form input,
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+.comment-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.comment-form .submit-btn {
+    background-color: cadetblue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.comment-form .submit-btn:hover {
+    background-color: #4a8b8d;
+}
+
+.multi-image-item {
+    min-width: calc(33.33% - 10px);
+    flex: 0 0 calc(33.33% - 10px);
+    height: 270px;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: #f5f5f5;
+}
+
+.multi-image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.multi-image-item:hover img {
+    transform: scale(1.03);
+}
+
+.carousel-btn {
+    background: rgba(255,255,255,0.8);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.carousel-btn:hover {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+    .multi-image-item {
+        min-width: calc(50% - 10px);
+        flex: 0 0 calc(50% - 10px);
+        height: 180px;
+    }
+}
+
+
+.carousel-btn {
+    background: none;
+    border: none;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    color: #555;
+}
+
+.single-image.contain-mode {
+    object-fit: contain;
+    background-color: #f5f5f5; /* Цвет фона если изображение меньше */
+}
+
+.single-image.active {
+    opacity: 1;
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.carousel-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+}
+
+.carousel-indicator.active {
+    background: #333;
+}
+
+
+.carousel-btn:hover {
+    background: rgba(0,0,0,0.05);
+    color: #000;
+}
+
+.carousel-btn svg {
+    transition: transform 0.2s ease;
+}
+
+.carousel-btn:hover svg {
+    transform: scale(1.2);
+}
+
+/* Кнопка удаления */
+.icon-button {
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.icon-button:hover {
+    background: #f5f5f5;
+    transform: scale(1.1);
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    stroke: #333;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .content-row {
+        flex-direction: column;
+    }
+
+    .map-container,
+    .description-container {
+        flex: none;
+        width: 100%;
+    }
+
+    .map-container {
+        height: 50vh;
+    }
+
+    .single-image {
+        max-height: 300px;
+    }
+
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.comment-author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.comment-author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.comment-author-info {
+    flex-grow: 1;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 2px;
+}
+
+.comment-date {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.comment-text {
+    color: #555;
+    line-height: 1.5;
+    padding-left: 50px; /* Отступ под аватар */
+}
+
+.comments-container {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-right: 10px;
+}
+
+.comment-form .form-group {
+    margin-bottom: 15px;
+}
+
+.comment-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.comment-form .submit-btn {
+    background-color: cadetblue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 16px;
+}
+
+.comment-form .submit-btn:hover {
+    background-color: #4a8b8d;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .comment-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .comment-author-avatar {
+        margin-bottom: 8px;
+    }
+
+    .comment-text {
+        padding-left: 0;
+    }
+}
+
+.description-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.char-counter {
+    text-align: right;
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 5px;
+}
+
+.char-counter span {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Стили для контейнера изображения */
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Стили для заметки в стиле Instagram */
+.instagram-note {
+    display: none;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    max-width: 80%;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    animation: note-appear 0.3s ease-out;
+}
+
+@keyframes note-appear {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .instagram-note {
+        font-size: 12px;
+        padding: 6px 10px;
+        max-width: 90%;
+    }
+}

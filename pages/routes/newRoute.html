@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Route</title>
+    <link rel="stylesheet" href="/pages/style/route.css">
+    <link rel="stylesheet" href="../style/header.css">
+</head>
+<body>
+<h1 style="margin-left: 7%; height: 10px; text-align: center; color: cadetblue">Создание маршрута</h1>
+<div class="main-container">
+    <div class="form-container">
+        <h1 class="form-title">Новый маршрут</h1>
+        <form id="routeForm" class="custom-form">
+            <div class="form-group">
+                <label for="name">Название</label>
+                <input type="text" id="name" name="name" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Описание</label>
+                <textarea id="description" name="description" class="form-textarea" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="place">Выберите место</label>
+                <select id="place" name="place" class="form-select" required>
+                    <option value="">--Место--</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Создать</button>
+        </form>
+
+        <div id="message" class="message"></div>
+    </div>
+</div>
+
+<script type="module" src="/js/route/route.js"></script>
+<script type="module" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="module" src="/loadHeader.js"></script>
+<script src="/loadFooter.js"></script>
+</body>
+</html>

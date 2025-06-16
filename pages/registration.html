@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Explorer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/header.css">
+</head>
+
+<body>
+<div class="registration-container">
+    <main>
+        <div class="form-container">
+            <div class="form-header">
+                <h1>Регистрация</h1>
+            </div>
+            <div class="form-body">
+                <form id="registrationForm" method="POST">
+                    <label for="username">Введите юзернейм</label>
+                    <input class="username" id="username"  name="username" placeholder="юзернейм"/>
+
+                    <label for="firstName">Введите имя</label>
+                    <input class="firstName" name="firstName" id="firstName" placeholder="имя"/>
+
+                    <label for="email">Введите почту</label>
+                    <input class="email" type="email" name="email" id="email" placeholder="почта"/>
+
+                    <label for="lastName">Введите фамилию</label>
+                    <input class="lastName" name="lastName" id="lastName" placeholder="фамилия"/>
+
+                    <label for="password">Введите пароль</label>
+                    <input type="password" class="password" name="password" id="password" placeholder="пароль"/>
+
+                    <label for="profileImage">Загрузите вашу фотографию профиля</label>
+                    <input type="file" name="profileImage" dirname="profileImage" id="profileImage" placeholder="image"/>
+
+                    <button type="submit" class="auth-button">регистрация</button>
+                </form>
+            </div>
+            <div style="text-align: center; margin-top: 10px;">
+                <a href="login.html" style="color: white">Войти в аккаунт</a>
+            </div>
+        </div>
+    </main>
+</div>
+<script type="module" src="index.js"></script>
+<script type="module" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/loadHeader.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Explorer</title>
+    <link rel="stylesheet" href="../style/allImages.css">
+    <link rel="stylesheet" href="../style/header.css">
+</head>
+<body>
+<h1 style="display: none" id="no-image-text">Нет фотографий</h1>
+<main class="container">
+    <h1 style="margin-left: 4%; height: 10px; text-align: center; color: cadetblue">Фотографии пользователей</h1>
+    <div class="photo-grid" id="photoGrid" style="margin-top: 10px; height: 400px">
+
+    </div>
+
+    <div class="gallery-controls">
+        <div class="pagination">
+            <button id="prevPageBtn" class="btn btn-prev" style="display: none">‹ Назад</button>
+            <span id="pageInfo"></span>
+            <button id="nextPageBtn" class="btn btn-next" style="display: none">Вперед ›</button>
+        </div>
+    </div>
+</main>
+
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="module" src="/js/image/allImages.js"></script>
+<script type="module" src="/loadHeader.js"></script>
+<script src="/loadFooter.js"></script>
+</body>
+</html>

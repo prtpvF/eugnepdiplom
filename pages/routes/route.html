@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Все маршруты</title>
+    <link rel="stylesheet" href="../style/allRoute.css">
+    <link rel="stylesheet" href="../style/header.css">
+</head>
+<body>
+<h1 style="margin-left: 4%; height: 10px; text-align: center; margin-top: 10%; color: cadetblue">Маршруты</h1>
+<div class="main-container">
+    <div id="loading-spinner" class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="routes-container" class="routes-grid"></div>
+
+    <div class="gallery-controls">
+        <button id="prevPageBtn" class="nav-btn">‹ Назад</button>
+        <span id="pageInfo" class="page-info"></span>
+        <button id="nextPageBtn" class="nav-btn">Вперед ›</button>
+    </div>
+</div>
+
+<script type="module" src="/js/route/getRoute.js"></script>
+<script type="module" src="/loadHeader.js"></script>
+<script src="/loadFooter.js"></script>
+<script type="module" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+</html>

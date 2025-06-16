@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="../style/likedImages.css">
+    <link rel="stylesheet" href="../style/header.css">
+</head>
+<body>
+
+<main class="container">
+    <h1 style="margin-left: 4%; height: 10px; color: cadetblue; text-align: center">Страница пользователя</h1>
+    <div class="photo-grid" id="photoGrid">
+    </div>
+
+    <div class="gallery-controls">
+        <div class="pagination">
+            <button id="prevPageBtn" class="btn btn-prev">‹ Назад</button>
+            <span id="pageInfo"></span>
+            <button id="nextPageBtn" class="btn btn-next">Вперед ›</button>
+        </div>
+    </div>
+
+    <div class="no-photos" id="noPhotosMessage" style="display: none;">
+        <p>У пользователя пока нет фотографий</p>
+    </div>
+</main>
+
+<script type="module" src="/js/image/personImages.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="/loadHeader.js"></script>
+<script src="/loadFooter.js"></script>
+</body>
+</html>

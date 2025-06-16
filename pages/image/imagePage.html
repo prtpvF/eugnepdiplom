@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image</title>
+    <link rel="stylesheet" href="../style/image.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <link rel="stylesheet" href="../style/header.css">
+    <style>
+        /* Добавляем только необходимые стили */
+        .info-container {
+            position: relative;
+            margin-top: 16px;
+            padding-right: 90px; /* Место для кнопок справа */
+            max-height: 300px; /* Ограничиваем высоту */
+        }
+
+        .description-scrollable {
+            max-height: 200px; /* Фиксированная высота для скролла */
+            overflow-y: auto; /* Вертикальный скролл */
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            margin-top: 10px;
+        }
+
+        .image-actions {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            gap: 8px;
+        }
+
+        /* Остальные ваши стили остаются без изменений */
+        .icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        .delete-icon .icon {
+            stroke: #ff4444;
+        }
+    </style>
+</head>
+<body>
+<main class="main-container">
+    <div class="image-container" id="image-container">
+        <div class="image-wrapper">
+            <img src="" alt="" id="image">
+
+            <!-- Основной контейнер с информацией -->
+            <div class="info-container" id="info-container">
+                <!-- Кнопки действий (фиксированы вверху справа) -->
+                <div class="image-actions">
+                    <button id="edit-description-btn" class="icon-button" title="Редактировать описание">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                        </svg>
+                    </button>
+                    <button id="delete-image-btn" class="icon-button delete-icon" title="Удалить изображение">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M3 6h18"/>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                            <path d="M10 11v6"/>
+                            <path d="M14 11v6"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Автор и лайки (остаются на своих местах) -->
+                <div class="author" id="author"></div>
+                <div class="likes" id="likes"></div>
+
+                <!-- Описание с возможностью скролла -->
+                <div class="description-scrollable" id="description">
+                </div>
+
+                <!-- Форма редактирования -->
+                <div class="edit-description">
+                    <textarea id="description-edit" rows="3"></textarea>
+                    <button id="save-description-btn">Сохранить</button>
+                    <button id="cancel-description-btn">Отмена</button>
+                </div>
+
+                <div class="rating-section" id="rating-section"></div>
+            </div>
+
+            <div class="map" id="map"></div>
+        </div>
+
+        <div class="comments-container" id="comments-container">
+            <div class="comments-wrapper">
+                <div class="comments" id="comments"></div>
+            </div>
+            <div class="comment-form">
+                <textarea id="comment-input" placeholder="Напишите комментарий..." rows="4"></textarea>
+                <button id="submit-comment-btn" class="comment-button">Опубликовать</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script type="module" src="/imageModule.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+<script type="module" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/loadHeader.js"></script>
+<script src="/loadFooter.js"></script>
+</body>
+</html>

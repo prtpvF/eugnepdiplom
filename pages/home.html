@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Explorer</title>
+    <link rel="stylesheet" href="style/likedImages.css">
+    <link rel="stylesheet" href="style/header.css">
+</head>
+<body>
+<main class="container">
+    <div class="tourism-banner">
+        <div class="banner-content">
+            <div class="banner-text">
+                <div class="banner-title">Откройте для себя Беларусь</div>
+                <div class="banner-description">
+                    Путешествуйте по древним замкам, гуляйте по реликтовым лесам Беловежской пущи,
+                    отдыхайте в уютных агроусадьбах. Беларусь - страна с богатой историей и
+                    потрясающей природой, которая ждет вас!
+                </div>
+            </div>
+            <button class="banner-button" id="banner-button">Узнать маршруты</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="navigation-cards">
+            <div class="nav-card nav-card-left" onclick="window.location.href='http://localhost:8080/fe/pages/image/allImages.html'">
+                <h2>Фотографии пользователей</h2>
+                <p>Посмотрите снимки, сделанные путешественниками со всей Беларуси.</p>
+            </div>
+            <div class="nav-card nav-card-right" onclick="window.location.href='http://localhost:8080/fe/pages/routes/route.html'">
+                <h2>Все маршруты</h2>
+                <p>Ознакомьтесь со всеми туристическими маршрутами по стране.</p>
+            </div>
+        </div>
+
+        <div class="gallery-section">
+            <div class="gallery-controls">
+                <div class="pagination">
+                    <button id="prevPageBtn" class="btn btn-prev" style="display: none">‹ Назад</button>
+                    <span id="pageInfo"></span>
+                    <button id="nextPageBtn" class="btn btn-next" style="display: none">Вперед ›</button>
+                </div>
+            </div>
+
+            <div class="multi-carousel-container">
+                <button class="carousel-btn prev-btn">
+                    <svg viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                </button>
+
+                <div class="multi-image-container" id="multi-image-container">
+                    <!-- Галерея будет здесь -->
+                </div>
+
+                <button class="carousel-btn next-btn">
+                    <svg viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="module" src="/js/home/home.js"></script>
+<script type="module" src="/loadHeader.js"></script>
+<script src="/loadFooter.js"></script>
+</body>
+</html>

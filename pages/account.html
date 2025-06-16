@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой профиль</title>
+    <link rel="stylesheet" href="../pages/style/header.css">
+    <link rel="stylesheet" href="./style/account.css">
+</head>
+<body>
+
+<main class="container">
+    <div class="profile-header">
+        <h1 class="profile-title" style="color: cadetblue; text-align: center">Мой профиль</h1>
+        <div class="tabs">
+            <button class="tab-btn active" id="photosTab">Фотографии</button>
+            <button class="tab-btn" id="routesTab">Маршруты</button>
+        </div>
+    </div>
+
+    <div class="photo-grid" id="photoGrid"></div>
+    <div class="route-grid" id="routeGrid" style="display: none;"></div>
+
+    <div class="gallery-controls">
+        <div class="button-group">
+            <a href="image/imageUpload.html" class="btn btn-upload" id="uploadPhotoBtn">
+                <span class="btn-icon">+</span>
+                <span class="btn-text">Добавить фото</span>
+            </a>
+            <a href="/pages/routes/newRoute.html" class="btn btn-upload" id="createRouteBtn" style="display: none;">
+                <span class="btn-icon">+</span>
+                <span class="btn-text">Создать маршрут</span>
+            </a>
+            <button class="btn btn-more" id="showMoreBtn">
+                <span class="btn-icon">›</span>
+                <span class="btn-text">Показать еще</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Детали фотографии</h2>
+                <button class="close-btn" id="closeModal">×</button>
+            </div>
+            <div class="modal-body">
+                <img class="modal-image" id="modalImage" src="" alt="Фотография">
+                <div class="modal-info">
+                    <h3 id="modalAuthor"></h3>
+                    <p id="modalPlace"></p>
+                    <p id="modalDescription"></p>
+                    <div class="likes-section">
+                        <h4>Лайки: <span id="modalLikes"></span></h4>
+                    </div>
+                    <div class="comments-section">
+                        <h4>Комментарии:</h4>
+                        <div class="comments-list" id="modalComments"></div>
+                    </div>
+                    <div class="author-actions" id="authorActions" style="display: none;">
+                        <button class="btn btn-edit" id="editDescriptionBtn">Изменить описание</button>
+                        <button class="btn btn-delete" id="deletePhotoBtn">Удалить фото</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Изменить описание</h2>
+                <button class="close-btn" id="closeEditModal">×</button>
+            </div>
+            <div class="modal-body">
+                <textarea id="editDescriptionInput" placeholder="Введите новое описание..." rows="4"></textarea>
+                <button class="btn btn-save" id="saveDescriptionBtn">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="no-content" id="noPhotosMessage" style="display: none;">
+        <p>У вас пока нет фотографий</p>
+    </div>
+    <div class="no-content" id="noRoutesMessage" style="display: none;">
+        <p>У вас пока нет маршрутов</p>
+    </div>
+</main>
+
+
+<script type="text/javascript" src="/loadHeader.js"></script>
+<script src="/loadFooter.js"></script>
+<script type="module" src="/person.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>

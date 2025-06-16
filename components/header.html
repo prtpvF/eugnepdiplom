@@ -1,0 +1,38 @@
+<header>
+    <div class="header-container">
+        <h1 class="app-title">Маршруты по Беларуси</h1>
+        <section class="search">
+            <input type="text" placeholder="Поиск мест или маршрутов..." id="search-input" onkeypress="handleEnter(event)">
+        </section>
+
+        <nav class="links">
+            <ul>
+                <li><a href="http://localhost:8080/fe/pages/home.html" id="home">Главная</a></li>
+                <li><a href="http://localhost:8080/fe/pages/places/allPlaces.html" id="places">Места</a></li>
+
+                <!-- Обновленный пункт для маршрутов -->
+                <li class="dropdown" id="routesMenu">
+                    <a id="routes" href="http://localhost:8080/fe/pages/routes/route.html" >Маршруты</a>
+                    <div class="dropdown-menu" id="routesDropdown">
+                        <a id="addRoute" href="http://localhost:8080/fe/pages/routes/newRoute.html">Добавить маршрут</a>
+                    </div>
+                </li>
+
+                <li><a id="contacts" href="http://localhost:8080/fe/pages/contact.html">Обратная связь</a></li>
+                <li><a href="http://localhost:8080/fe/pages/login.html" id="login">Вход</a></li>
+                <li class="dropdown" id="accountMenu">
+                    <a href="http://localhost:8080/fe/pages/account.html" id="account" itemid="account">
+                        <span class="account-text">Личный кабинет</span>
+                        <div class="profile-avatar-container" style="width: 40px; height: 40px;">
+                            <img id="profileAvatar" src="" alt="Аватар профиля" class="profile-avatar">
+                        </div>
+                    </a>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="http://localhost:8080/fe/pages/image/likedImage.html" id="liked">Понравившиеся публикации</a>
+                        <a id="logout">Выйти</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
