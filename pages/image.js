@@ -1,4 +1,4 @@
-import { API_CONFIG } from "../constants";
+import { API_CONFIG } from "https://effortless-douhua-d77333.netlify.app/constants.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('access_token');

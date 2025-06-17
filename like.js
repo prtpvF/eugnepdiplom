@@ -1,5 +1,5 @@
 import { showError } from 'https://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
-import { API_CONFIG } from  './constants'
+import { API_CONFIG } from "https://effortless-douhua-d77333.netlify.app/constants.js";
 
 export async function updateLike(userData) {
     console.log("updateLike function called"); // Debugging

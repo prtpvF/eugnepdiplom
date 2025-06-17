@@ -1,6 +1,6 @@
 import { showError } from 'https://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
 import { getImageMap } from 'https://effortless-douhua-d77333.netlify.app/map.js';
-import { API_CONFIG } from '../../constants';
+import { API_CONFIG } from "https://effortless-douhua-d77333.netlify.app/constants.js";
 
 document.addEventListener('DOMContentLoaded', async function () {
     try {

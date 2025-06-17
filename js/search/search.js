@@ -1,6 +1,5 @@
-// search.js
-import { getImageMap } from "map";
-import { API_CONFIG } from '../../constants';
+import { getImageMap } from 'https://effortless-douhua-d77333.netlify.app/map.js';
+import { API_CONFIG } from "https://effortless-douhua-d77333.netlify.app/constants.js";
 
 let currentGroup = 0;
 let totalGroups = 0;

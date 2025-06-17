@@ -3,7 +3,7 @@ import { showError } from 'https://effortless-douhua-d77333.netlify.app/errorMes
 import { updateComments, initComments } from 'https://effortless-douhua-d77333.netlify.app/commentModule.js';
 import { getPerson } from "https://effortless-douhua-d77333.netlify.app/personModule.js";
 import { updateLike } from "https://effortless-douhua-d77333.netlify.app/like.js";
-import { API_CONFIG } from  './constants'
+import { API_CONFIG } from "https://effortless-douhua-d77333.netlify.app/constants.js";
 
 let data = null;
 let currentPerson = null;
