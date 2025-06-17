@@ -53,7 +53,7 @@ async function deleteImage(imageId) {
 
 async function updateImageData(data) {
     const imageElement = document.getElementById('image');
-    imageElement.src = data.pathToFile;
+    imageElement.src = API_CONFIG.BASE_URL + data.pathToFile;
     imageElement.alt = `Фотография от ${data.author}`;
 
     const descriptionElement = document.getElementById('description');
@@ -95,7 +95,7 @@ async function updateImageData(data) {
 function updateMap(place) {
     const mapContainer = document.getElementById('map');
     if (!mapContainer._leaflet_map) {
-        getImageMap(place.lon, place.lat, data.pathToFile);
+        getImageMap(place.lon, place.lat, API_CONFIG.BASE_URL + data.pathToFile);
     } else {
         const map = mapContainer._leaflet_map;
         map.setView([place.lat, place.lon]);

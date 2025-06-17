@@ -74,7 +74,7 @@ function createCarousel(images) {
         imageContainer.className = 'image-container';
 
         const img = document.createElement('img');
-        img.src = item.pathToFile;
+        img.src = API_CONFIG.BASE_URL +item.pathToFile;
         img.alt = 'Route image';
         imageContainer.appendChild(img);
 

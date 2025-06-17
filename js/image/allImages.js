@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             if (response.status === 401) {
-                window.location.replace('./login.html');
+                window.location.replace(API_CONFIG.FRONT_URL + '/pages/login.html');
                 return;
             }
 
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
             photoItem.dataset.id = photo.id;
 
             const img = document.createElement('img');
-            img.src = photo.pathToFile;
+            img.src = API_CONFIG.BASE_URL + photo.pathToFile;
             img.alt = 'Фотография';
 
             photoItem.appendChild(img);
