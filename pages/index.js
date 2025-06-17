@@ -149,7 +149,8 @@ async function saveImage(form) {
             body: formData,
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-            }
+            },
+            credentials: 'include'
         });
 
         const status =  response.status;
