@@ -140,13 +140,24 @@ async function handleLogin(form) {
     }
 }
 
-async function saveImage(formData, imageDto) {
+/**
+ * Сохраняет изображение на сервере
+ * @param {HTMLFormElement} formElement - DOM-элемент формы
+ * @param {Object} imageDto - Объект с данными изображения
+ */
+async function saveImage(formElement, imageDto) {
     try {
+        // 1. Получаем placeId из localStorage
         const placeId = localStorage.getItem("placeId");
+        if (!placeId) {
+            showError("Не удалось получить placeId", 400);
+            return;
+        }
 
-        // Добавляем все данные в FormData
-        const formPayload = new FormData();
-        formPayload.append('image', formData.get('image')); // Файл
+        // 2. Создаем FormData из элемента формы
+        const formPayload = new FormData(formElement);
+
+        // 3. Добавляем дополнительные данные
         formPayload.append('placeId', placeId);
         formPayload.append('imageDto',
             new Blob([JSON.stringify(imageDto)], {
@@ -154,20 +165,67 @@ async function saveImage(formData, imageDto) {
             })
         );
 
+        // 4. [Отладка] Выводим содержимое FormData
+        console.log("--- FormData содержимое ---");
+        for (const [key, value] of formPayload.entries()) {
+            if (value instanceof File) {
+                console.log(`${key}: File(${value.name}, ${value.size} bytes)`);
+            } else if (value instanceof Blob) {
+                console.log(`${key}: Blob(${value.type}, ${value.size} bytes)`);
+            } else {
+                console.log(`${key}: ${value}`);
+            }
+        }
+
+        // 5. Отправляем запрос на сервер
         const response = await axios.post(
-            `${API_CONFIG.BASE_URL}/image`,
+            `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.IMAGE}`,
             formPayload,
             {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                    // Content-Type НЕ указываем!
-                }
+                },
+                // Таймаут 30 секунд
+                timeout: 30000
             }
         );
 
+        // 6. Обработка успешного ответа
+        showSuccess("Фотография успешно сохранена");
+
+        // 7. Перенаправляем на страницу аккаунта
+        setTimeout(() => {
+            window.location.href = `${API_CONFIG.FRONT_URL}/pages/account.html`;
+        }, 1500);
+
         return response.data;
+
     } catch (error) {
-        console.error("Upload error:", error);
+        // 8. Детальная обработка ошибок
+        let errorMessage = "Ошибка при сохранении";
+        let statusCode = 500;
+
+        if (axios.isAxiosError(error)) {
+            // Ошибка Axios
+            if (error.response) {
+                // Сервер ответил с ошибкой
+                statusCode = error.response.status;
+                errorMessage = error.response.data?.message ||
+                    error.response.statusText;
+            } else if (error.request) {
+                // Запрос был отправлен, но ответ не получен
+                errorMessage = "Нет ответа от сервера";
+            } else {
+                // Ошибка настройки запроса
+                errorMessage = error.message;
+            }
+        } else {
+            // Не Axios ошибка
+            errorMessage = error.message || "Неизвестная ошибка";
+        }
+
+        showError(errorMessage, statusCode);
+        console.error("Детали ошибки:", error);
         throw error;
     }
 }
