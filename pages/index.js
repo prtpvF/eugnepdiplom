@@ -159,7 +159,7 @@ async function saveImage(form) {
             }
         );
 
-        showSuccess("Фотография успешно сохранена");
+        showError("Фотография успешно сохранена", 200);
         window.location.href = `${API_CONFIG.FRONT_URL}/pages/account.html`;
     } catch (error) {
         const errorMsg = error.response?.data?.message || "Ошибка при сохранении";
