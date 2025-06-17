@@ -1,6 +1,6 @@
 export const API_CONFIG = {
     BASE_URL: 'https://diplom-5sra.onrender.com',
-    FRONT_URL: 'https://effortless-douhua-d77333.netlify.app',
+    FRONT_URL: 'https://effortless-douhua-d77333.netlify.app/api',
     ENDPOINTS: {
         LOGIN: '/auth/login',
         REGISTRATION: '/auth/registration',
