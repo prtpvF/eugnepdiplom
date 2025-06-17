@@ -88,7 +88,7 @@ async function handleRegistration(form) {
 
     try {
         const response = await axios.post(
-            'http://localhost:8081/auth/registration',
+            API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.REGISTRATION,
             formData,
             {
                 headers: {

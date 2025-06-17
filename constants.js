@@ -3,6 +3,7 @@ export const API_CONFIG = {
     FRONT_URL: 'https://effortless-douhua-d77333.netlify.app',
     ENDPOINTS: {
         LOGIN: '/auth/login',
+        REGISTRATION: '/auth/registration',
         COMMENTS: '/comments',
         IMAGES: '/api/images',
         PERSON: '/person',
