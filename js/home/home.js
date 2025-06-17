@@ -1,5 +1,5 @@
-import { showError } from 'errorMessageModule';
-import { API_CONFIG } from '../../constants';
+import { showError } from 'hhttps://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
+import { API_CONFIG } from 'https://effortless-douhua-d77333.netlify.app/constants.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     const photoGrid = document.getElementById('photoGrid');

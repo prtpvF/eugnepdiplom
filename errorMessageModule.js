@@ -1,4 +1,3 @@
-
 export function showError(message, status) {
     const oldToast = document.getElementById('error-toast');
     if (oldToast) {
