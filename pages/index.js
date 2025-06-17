@@ -141,30 +141,30 @@ async function handleLogin(form) {
 }
 
 async function saveImage(form) {
+    try {
         const formData = new FormData(form);
-        console.log(localStorage.getItem("placeId"))
         const placeId = localStorage.getItem("placeId");
+
+        // Добавляем placeId в FormData
+        formData.append('placeId', placeId);
+
         const response = await axios.post(
-            API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE,
+            `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.IMAGE}`,
             formData,
             {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
-                },
-                params: { placeId },
+                    // НЕ указываем Content-Type - браузер сам добавит с boundary!
+                    'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                }
             }
         );
 
-        const status =  response.status;
-
-        if(status === 200) {
-           showError("фотография успешно сохраненна", status)
-            window.location.href = API_CONFIG.FRONT_URL + '/pages/account.html';
-        }
-        if(status !== 200) {
-            showError(response.message, status);
-        }
+        showSuccess("Фотография успешно сохранена");
+        window.location.href = `${API_CONFIG.FRONT_URL}/pages/account.html`;
+    } catch (error) {
+        const errorMsg = error.response?.data?.message || "Ошибка при сохранении";
+        showError(errorMsg, error.response?.status || 500);
+    }
 }
 
 function setupOutsideClickHandler(containerId) {
