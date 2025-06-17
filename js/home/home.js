@@ -1,4 +1,4 @@
-import { showError } from 'hhttps://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
+import { showError } from 'https://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
 import { API_CONFIG } from 'https://effortless-douhua-d77333.netlify.app/constants.js';
 
 document.addEventListener('DOMContentLoaded', function () {

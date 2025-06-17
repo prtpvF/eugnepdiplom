@@ -1,4 +1,4 @@
-import { API_CONFIG } from  'https://effortless-douhua-d77333.netlify.app/constants.js'
+import { API_CONFIG } from  'http://localhost:8080/constants.js'
 
     document.addEventListener("DOMContentLoaded", () => {
         fetch("/components/header.html")

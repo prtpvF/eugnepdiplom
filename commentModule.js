@@ -116,7 +116,7 @@ export function initComments(image, author, onCommentAdded) {
         if (!commentText) return;
 
         try {
-            const response = await fetch(API_CONFIG.BASE_URL+`/comment/new`, {
+            const response = await fetch(API_CONFIG.BASE_URL`/comment/new`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
