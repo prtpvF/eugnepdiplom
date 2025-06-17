@@ -141,29 +141,75 @@ async function handleLogin(form) {
 }
 
 async function saveImage(form) {
+    // 1. Проверяем, что форма существует
+    if (!form || !form instanceof HTMLFormElement) {
+        showError("Некорректная форма для загрузки", 400);
+        return;
+    }
+
+    // 2. Создаём FormData и проверяем наличие файла
+    const formData = new FormData(form);
+    const placeId = localStorage.getItem("placeId");
+
+    if (!placeId) {
+        showError("Не указан placeId", 400);
+        return;
+    }
+
+    // Добавляем placeId в FormData
+    formData.append('placeId', placeId);
+
+    // 3. Проверяем содержимое FormData перед отправкой (для отладки)
+    console.log("Содержимое FormData:");
+    for (const [key, value] of formData.entries()) {
+        console.log(key, value instanceof File ? `File: ${value.name}` : value);
+    }
+
     try {
-        const formData = new FormData(form);
-        const placeId = localStorage.getItem("placeId");
-
-        // Добавляем placeId в FormData
-        formData.append('placeId', placeId);
-
+        // 4. Отправка запроса с правильными заголовками
         const response = await axios.post(
-            `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.IMAGE}`,
+            `${API_CONFIG.BASE_URL}/image`,
             formData,
             {
                 headers: {
-                    // НЕ указываем Content-Type - браузер сам добавит с boundary!
-                    'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                }
+                    'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+                    // Не указываем Content-Type - браузер добавит сам с boundary!
+                },
+                // Для отладки
+                transformRequest: [(data, headers) => {
+                    console.log("Фактические заголовки запроса:", headers);
+                    return data;
+                }]
             }
         );
 
-        showError("Фотография успешно сохранена", 200);
-        window.location.href = `${API_CONFIG.FRONT_URL}/pages/account.html`;
+        // 5. Обработка успешного ответа
+        if (response.status >= 200 && response.status < 300) {
+            showSuccess("Фотография успешно сохранена");
+            window.location.href = `${API_CONFIG.FRONT_URL}/pages/account.html`;
+        } else {
+            showError("Неожиданный ответ сервера", response.status);
+        }
     } catch (error) {
-        const errorMsg = error.response?.data?.message || "Ошибка при сохранении";
-        showError(errorMsg, error.response?.status || 500);
+        // 6. Полноценная обработка ошибок
+        console.error("Полная ошибка:", error);
+
+        let errorMessage = "Ошибка при сохранении";
+        let statusCode = 500;
+
+        if (error.response) {
+            // Сервер ответил с ошибкой
+            statusCode = error.response.status;
+            errorMessage = error.response.data?.message || error.response.statusText;
+        } else if (error.request) {
+            // Запрос был сделан, но ответа не было
+            errorMessage = "Нет ответа от сервера";
+        } else {
+            // Ошибка при настройке запроса
+            errorMessage = error.message;
+        }
+
+        showError(errorMessage, statusCode);
     }
 }
 
