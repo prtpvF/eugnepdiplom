@@ -141,20 +141,16 @@ async function handleLogin(form) {
 }
 
 async function saveImage(form) {
-        const formData = new FormData(form);
-        console.log(localStorage.getItem("placeId"))
-        const placeId = localStorage.getItem("placeId");
-        const response = await axios.post(
-            API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE,
-            formData,
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
-                },
-                params: { placeId },
+    const formData = new FormData(form);
+    formData.append('placeId', localStorage.getItem("placeId"));
+
+        const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.IMAGE}`, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
             }
-        );
+        });
 
         const status =  response.status;
 
