@@ -1,4 +1,5 @@
-import { showError } from "http://localhost:8080/fe/errorMessageModule.js";
+import { showError } from "https://effortless-douhua-d77333.netlify.app/errorMessageModule.js";
+import { API_CONFIG } from '../../constants';
 
 document.addEventListener('DOMContentLoaded', function() {
     fetchPlaces();
@@ -10,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchPlaces() {
-    fetch('http://localhost:8081/place/all')
+    fetch(API_CONFIG.BASE_URL + '/place/all')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -60,7 +61,7 @@ function createRoute() {
         return;
     }
 
-    fetch('http://localhost:8081/route/new', {
+    fetch(API_CONFIG.BASE_URL + '/route/new', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,

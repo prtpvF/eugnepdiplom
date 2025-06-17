@@ -1,3 +1,5 @@
+import { API_CONFIG } from  './constants'
+
     document.addEventListener("DOMContentLoaded", () => {
         fetch("/components/header.html")
             .then(response => response.text())
@@ -32,7 +34,7 @@
         } else {
 
             try {
-                const response = await axios.get('http://localhost:8081/person/account', {
+                const response = await axios.get('https://diplom-5sra.onrender.com/person/account', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -67,54 +69,54 @@
         home.onclick = function () {
             e.stopImmediatePropagation();
             e.preventDefault();
-            window.location.replace('http://localhost:8080/fe/pages/home.html')
+            window.location.replace(API_CONFIG.FRONT_URL +'/pages/home.html')
         }
 
         createRoute.onclick = function (e) {
             e.stopImmediatePropagation();
             e.preventDefault();
-            window.location.replace('http://localhost:8080/fe/pages/routes/newRoute.html')
+            window.location.replace(API_CONFIG.FRONT_URL + '/pages/routes/newRoute.html')
         }
 
         places.onclick = function (e) {
             e.stopImmediatePropagation();
             e.preventDefault();
-            window.location.href = `http://localhost:8080/fe/pages/places/allPlaces.html?nocache=${Date.now()}`;
+            window.location.href = API_CONFIG.FRONT_URL +`/pages/places/allPlaces.html?nocache=${Date.now()}`;
         }
 
         routes.onclick = function (e) {
             e.stopImmediatePropagation();
             e.preventDefault();
-            window.location.href = 'http://localhost:8080/fe/pages/routes/route.html'
+            window.location.href = API_CONFIG.FRONT_URL +'/pages/routes/route.html'
         }
 
         contacts.onclick = function (e) {
             e.stopImmediatePropagation();
             e.preventDefault();
-            window.location.replace('http://localhost:8080/fe/pages/contact.html')
+            window.location.replace(API_CONFIG.FRONT_URL +'/pages/contact.html')
         }
 
         login.onclick = function (e) {
             e.stopImmediatePropagation();
             e.preventDefault();
-            window.location.replace('http://localhost:8080/fe/pages/login.html')
+            window.location.replace(API_CONFIG.FRONT_URL +'/pages/login.html')
         }
 
         account.onclick = function (e) {
             e.stopImmediatePropagation();
             e.preventDefault();
-            window.location.href = 'http://localhost:8080/fe/pages/account.html';
+            window.location.href = API_CONFIG.FRONT_URL +'/pages/account.html';
         }
 
         liked.onclick = function (e) {
             e.stopImmediatePropagation();
             e.preventDefault();
-            window.location.replace('http://localhost:8080/fe/pages/image/likedImage.html')
+            window.location.replace(API_CONFIG.FRONT_URL +'/pages/image/likedImage.html')
         }
 
         logout.onclick = function (e) {
             localStorage.clear()
-            window.location.replace('http://localhost:8080/fe/pages/login.html')
+            window.location.replace(API_CONFIG.FRONT_URL +'/pages/login.html')
         }
 
         accountMenu.addEventListener("mouseenter", () => {
@@ -143,7 +145,7 @@
         if (query) {
             const encodedQuery = encodeURIComponent(query);
 
-            window.location.href = `http://localhost:8080/fe/pages/search/search.html?query=${encodedQuery}`;
+            window.location.href = API_CONFIG.FRONT_URL +`/pages/search/search.html?query=${encodedQuery}`;
         } else {
             alert("Пожалуйста, введите поисковый запрос");
         }

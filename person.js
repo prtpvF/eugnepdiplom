@@ -1,4 +1,5 @@
-import { showError } from 'http://localhost:8080/fe/errorMessageModule.js';
+import { showError } from 'https://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
+import { API_CONFIG } from  './constants'
 
 document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('access_token');
@@ -36,14 +37,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     let currentTab = 'photos';
 
     try {
-        const response = await fetch('http://localhost:8081/person/account', {
+        const response = await fetch(API_CONFIG.BASE_URL +API_CONFIG.ENDPOINTS.ACCOUNT, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         });
 
         if (response.status === 401) {
-            window.location.href = 'http://localhost:8080/fe/pages/login.html';
+            window.location.href = API_CONFIG.FRONT_URL + '/pages/login';
             return;
         }
 
@@ -55,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         userData = await response.json();
         allPhotos = userData.images || [];
 
-        const routesResponse = await fetch('http://localhost:8081/route/all/person', {
+        const routesResponse = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.PERSON_ROUTES, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -102,16 +103,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     createRouteBtn.onclick = function (e) {
         e.stopImmediatePropagation();
         e.preventDefault();
-        window.location.replace('http://localhost:8080/fe/pages/routes/newRoute.html')
+        window.location.replace(API_CONFIG.FRONT_URL + '/pages/routes/newRoute.html')
     }
 
-    // Photo grid click handler
     photoGrid.addEventListener('click', async (event) => {
         const photoItem = event.target.closest('.photo-item');
         if (!photoItem) return;
 
         try {
-            const response = await fetch(`http://localhost:8081/image/${photoItem.dataset.id}`, {
+            const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE +`/${photoItem.dataset.id}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const photoDetails = await response.json();
             localStorage.removeItem('photo');
             localStorage.setItem('photo', JSON.stringify(photoDetails));
-            window.location.href = 'http://localhost:8080/fe/pages/image/imagePage.html';
+            window.location.href = API_CONFIG.FRONT_URL + '/pages/image/imagePage';
         } catch (error) {
             showError(error.message);
             console.error(error);
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:8081/image/${currentPhotoId}`, {
+            const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE + `/${currentPhotoId}`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!confirmDelete) return;
 
         try {
-            const response = await fetch(`http://localhost:8081/image/${currentPhotoId}`, {
+            const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE +`/${currentPhotoId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     const routeId = event.currentTarget.dataset.id;
                     localStorage.setItem('routeId', routeId);
-                    window.location.replace('http://localhost:8080/fe/pages/routes/routePage.html');
+                    window.location.replace(API_CONFIG.FRONT_URL + '/pages/routes/routePage');
                 });
             });
 
@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     async function deleteRoute(route) {
         try {
-            const response = await axios.delete(`http://localhost:8081/route/${route.id}`,
+            const response = await axios.delete(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.ROUTE +`/${route.id}`,
                 {
                     method: 'DELETE',
                     headers: {

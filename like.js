@@ -1,4 +1,5 @@
-import { showError } from 'http://localhost:8080/fe/errorMessageModule.js';
+import { showError } from 'https://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
+import { API_CONFIG } from  './constants'
 
 export async function updateLike(userData) {
     console.log("updateLike function called"); // Debugging
@@ -36,7 +37,7 @@ export async function updateLike(userData) {
         const likeButton = ratingSection.querySelector('#likeButton');
         likeButton.addEventListener('click', async () => {
             try {
-                const response = await fetch(`http://localhost:8081/like/${photo.id}`, {
+                const response = await fetch(API_CONFIG.BASE_URL + `/like/${photo.id}`, {
                     method: userLiked ? 'DELETE' : 'POST',
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('access_token')}`,

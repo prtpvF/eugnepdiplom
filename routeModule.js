@@ -1,7 +1,7 @@
 import { getImageMap } from 'http://localhost:8080/fe/map.js';
 import { showError } from 'http://localhost:8080/fe/errorMessageModule.js';
+import { API_CONFIG } from  './constants'
 
-// Глобальные переменные для управления каруселью
 let currentGroup = 0;
 let totalGroups = 0;
 let currentImages = [];
@@ -15,7 +15,7 @@ const addCommentForm = document.getElementById("comment-form");
 // Основные функции приложения
 async function loadRouteData(routeId) {
     try {
-        const response = await fetch(`http://localhost:8081/route/${routeId}`);
+        const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.ROUTE + `/${routeId}`);
 
         if (response.ok) {
             const data = await response.json();
@@ -160,7 +160,7 @@ async function uploadPhoto(routeId, file, description) {
     formData.append('description', description);
 
     try {
-        const response = await fetch(`http://localhost:8081/route/image/${routeId}`, {
+        const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.ROUTE + API_CONFIG.ENDPOINTS.IMAGE + `/${routeId}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`
@@ -219,7 +219,7 @@ function formatDate(dateString) {
 }
 
 async function postComment(routeId, commentData) {
-    const response = await fetch(`http://localhost:8081/comment/new/route`, {
+    const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.COMMENT +`/new/route`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

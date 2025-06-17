@@ -1,4 +1,5 @@
-import { showError } from 'http://localhost:8080/fe/errorMessageModule.js';
+import { showError } from 'https://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
+import { API_CONFIG } from '../../constants';
 
 document.addEventListener('DOMContentLoaded', async function () {
     try {
@@ -19,7 +20,7 @@ function getPlaceIdFromUrl() {
 
 async function loadImagesByPlace(placeId, page = 0, size = 12) {
     try {
-        const response = await axios.get(`http://localhost:8081/image/all/byPlace/${placeId}`, {
+        const response = await axios.get(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE +`/all/byPlace/${placeId}`, {
             params: {
                 page,
                 size,
@@ -48,7 +49,7 @@ function renderImages(images) {
         imageCard.onclick = function () {
             localStorage.removeItem('photo')
             localStorage.setItem('photo', JSON.stringify(image));
-            window.location.href = 'http://localhost:8080/fe/pages/image/imagePage.html';
+            window.location.href = API_CONFIG.FRONT_URL + '/pages/image/imagePage.html';
         }
         container.appendChild(imageCard);
     });

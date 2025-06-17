@@ -1,9 +1,10 @@
-import { showError } from 'http://localhost:8080/fe/errorMessageModule.js';
-import { getImageMap } from 'http://localhost:8080/fe/map.js';
+import { showError } from 'https://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
+import { getImageMap } from 'https://effortless-douhua-d77333.netlify.app/map.js';
+import { API_CONFIG } from '../../constants';
 
 document.addEventListener('DOMContentLoaded', async function () {
     try {
-        const response = await axios.get('http://localhost:8081/place/allWithImages');
+        const response = await axios.get(API_CONFIG.BASE_URL+'/place/allWithImages');
         console.log(response);
         const places = response.data;
         renderPlaces(places);
@@ -27,7 +28,7 @@ function renderPlaces(places) {
                     throw new Error('placeId is required');
                 }
                 localStorage.setItem('placeId', place.placeId);
-                window.location.href = 'http://localhost:8080/fe/pages/places/images.html';
+                window.location.href = API_CONFIG.FRONT_URL+'/pages/places/images.html';
 
             } catch (error) {
                 console.error('Navigation error:', error);

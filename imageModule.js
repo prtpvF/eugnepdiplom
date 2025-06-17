@@ -1,15 +1,16 @@
-import { getImageMap } from 'http://localhost:8080/fe/map.js';
-import { showError } from 'http://localhost:8080/fe/errorMessageModule.js';
-import { updateComments, initComments } from 'http://localhost:8080/fe/commentModule.js';
-import { getPerson } from "http://localhost:8080/fe/personModule.js";
-import { updateLike } from "http://localhost:8080/fe/like.js";
+import { getImageMap } from 'https://effortless-douhua-d77333.netlify.app/map.js';
+import { showError } from 'https://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
+import { updateComments, initComments } from 'https://effortless-douhua-d77333.netlify.app/commentModule.js';
+import { getPerson } from "https://effortless-douhua-d77333.netlify.app/personModule.js";
+import { updateLike } from "https://effortless-douhua-d77333.netlify.app/like.js";
+import { API_CONFIG } from  './constants'
 
 let data = null;
 let currentPerson = null;
 
 async function loadImageData(imageId) {
     try {
-        const response = await fetch(`http://localhost:8081/image/${imageId}`);
+        const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE +`/${imageId}`);
 
         if (response.ok) {
             data = await response.json();
@@ -30,7 +31,7 @@ async function deleteImage(imageId) {
 
     try {
         const token = localStorage.getItem('access_token');
-        const response = await fetch(`http://localhost:8081/image/${imageId}`, {
+        const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE +`/${imageId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -39,7 +40,7 @@ async function deleteImage(imageId) {
 
         if (response.ok) {
             showError('Фотография успешно удалена', response.status);
-            window.location.href = 'http://localhost:8080/fe/pages/home.html';
+            window.location.href =  API_CONFIG.FRONT_URL + '/pages/home';
         } else {
             const error = await response.json();
             showError(error.message, response.status);
@@ -64,7 +65,7 @@ async function updateImageData(data) {
     authorElement.addEventListener('click', () => {
         localStorage.setItem('author', data.author);
         console.log(data.author)
-        window.location.href = 'http://localhost:8080/fe/pages/person/personPage.html'
+        window.location.href =  API_CONFIG.FRONT_URL + '/pages/person/personPage'
     })
 
     const likesElement = document.getElementById('likes');
@@ -104,7 +105,7 @@ function updateMap(place) {
 async function updateDescription(imageId, newDescription) {
     try {
         const token = localStorage.getItem('access_token');
-        const response = await fetch(`http://localhost:8081/image/${imageId}`, {
+        const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE +`/${imageId}`, {
             method: 'PATCH',
             headers: {
                 'Authorization': `Bearer ${token}`,

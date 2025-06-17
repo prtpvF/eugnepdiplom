@@ -1,5 +1,5 @@
-import {showError} from 'http://localhost:8080/fe/errorMessageModule.js';
-import {updateToken} from '/refreshTokenModules.js';
+import {showError} from 'https://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
+import { API_CONFIG } from "../constants";
 
 document.addEventListener('DOMContentLoaded', () => {
     const registrationForm = document.getElementById('registrationForm');
@@ -120,7 +120,7 @@ async function handleLogin(form) {
     });
 
     try {
-        const response = await axios.post('http://localhost:8081/auth/login', JSON.stringify(data), {
+        const response = await axios.post(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.LOGIN, JSON.stringify(data), {
             headers: { 'Content-Type': 'application/json' }
         });
 
@@ -128,7 +128,7 @@ async function handleLogin(form) {
             const { 'access_token': accessToken, 'refresh_token': refreshToken } = response.data;
             localStorage.setItem('access_token', accessToken);
             localStorage.setItem('refresh_token', refreshToken);
-            window.location.href = 'http://localhost:8080/fe/pages/home.html';
+            window.location.href = API_CONFIG.FRONT_URL + '/pages/home.html';
         }
     } catch (error) {
         if (error.response && ( error.response.status === 404 || error.response.status === 400) ) {
@@ -145,7 +145,7 @@ async function saveImage(form) {
         console.log(localStorage.getItem("placeId"))
         const placeId = localStorage.getItem("placeId");
         const response = await axios.post(
-            'http://localhost:8081/image/',
+            API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE,
             formData,
             {
                 headers: {
@@ -160,7 +160,7 @@ async function saveImage(form) {
 
         if(status === 200) {
            showError("фотография успешно сохраненна", status)
-            window.location.href = 'http://localhost:8080/fe/pages/account.html';
+            window.location.href = API_CONFIG.FRONT_URL + '/pages/account.html';
         }
         if(status !== 200) {
             showError(response.message, status);
@@ -192,7 +192,7 @@ function updatePlaceContainer(places, containerId, onPlaceClick) {
 async function findLocation() {
     const placeName = document.getElementById('location').value;
 
-    return axios.get('http://localhost:8081/place/find', {
+    return axios.get(API_CONFIG.BASE_URL + '/place/find', {
         params: { cityName: placeName }
     }).then( response => {
 
@@ -254,7 +254,7 @@ async function savePlace(place) {
         }
 
         const response = await axios.post(
-            'http://localhost:8081/place/',
+            API_CONFIG.BASE_URL + '/place/',
             JSON.stringify(place),
             {
                 headers: { 'Content-Type': 'application/json' }

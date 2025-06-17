@@ -1,4 +1,5 @@
-import { showError } from 'http://localhost:8080/fe/errorMessageModule.js';
+import { showError } from 'https://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
+import { API_CONFIG } from  './constants'
 
 document.addEventListener('DOMContentLoaded', function () {
     const photoGrid = document.getElementById('photoGrid');
@@ -13,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function getLikedImages(page, size) {
         try {
-            const url = new URL('http://localhost:8081/image/all/liked');
+            const url = new URL(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE + '/all/liked');
             url.searchParams.append('page', page);
             url.searchParams.append('size', size);
 
@@ -62,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 photoGrid.addEventListener('click', (e) => {
                     localStorage.removeItem('photo');
                     localStorage.setItem('photo', JSON.stringify(photo));
-                    window.location.href = 'http://localhost:8080/fe/pages/image/imagePage.html'
+                    window.location.href = API_CONFIG.FRONT_URL + '/pages/image/imagePage'
                 })
             });
 

@@ -1,7 +1,9 @@
+import { API_CONFIG } from "../constants";
+
 document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('access_token');
     if (!token) {
-        window.location.href = 'http://localhost:8080/fe/pages/login.html';
+        window.location.href = API_CONFIG.FRONT_URL + '/pages/login.html';
     }
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -37,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     async function fetchPhotoData(id, token) {
-        const response = await fetch(`http://localhost:8081/image/${id}`, {
+        const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE +`/${id}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!response.ok) throw new Error('Фото не найдено');
@@ -47,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     async function fetchRatingData(id, token) {
         try {
-            const response = await fetch(`http://localhost:8081/image/${id}/rating`, {
+            const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE +`/${id}/rating`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             return response.ok ? await response.json() : { averageRating: 0, userRating: 0 };
@@ -88,7 +90,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 const value = parseInt(star.dataset.value);
                 try {
-                    const response = await fetch(`http://localhost:8081/image/${photoId}/rate`, {
+                    const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE +`/${photoId}/rate`, {
                         method: 'POST',
                         headers: {
                             'Authorization': `Bearer ${token}`,

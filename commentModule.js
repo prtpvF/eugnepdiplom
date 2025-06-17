@@ -1,4 +1,5 @@
-import { showError } from 'http://localhost:8080/fe/errorMessageModule.js';
+import { API_CONFIG } from  './constants'
+import { showError } from 'https://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
 
 function getUsernameFromToken() {
     const token = localStorage.getItem('access_token');
@@ -77,7 +78,7 @@ export function updateComments(comments, image) {
                 deleteIcon.addEventListener('click', async (e) => {
                     e.stopPropagation();
                     try {
-                        const response = await fetch(`http://localhost:8081/comment/${comment.id}`, {
+                        const response = await fetch(API_CONFIG.BASE_URL + `/comment/${comment.id}`, {
                             method: 'DELETE',
                             headers: {
                                 'Authorization': `Bearer ${localStorage.getItem('access_token')}`
@@ -115,7 +116,7 @@ export function initComments(image, author, onCommentAdded) {
         if (!commentText) return;
 
         try {
-            const response = await fetch(`http://localhost:8081/comment/new`, {
+            const response = await fetch(API_CONFIG.BASE_URL+`/comment/new`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

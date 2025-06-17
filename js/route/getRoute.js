@@ -1,8 +1,9 @@
-import { showError } from "http://localhost:8080/fe/errorMessageModule.js";
+import { showError } from "https://effortless-douhua-d77333.netlify.app/errorMessageModule.js";
+import { API_CONFIG } from '../../constants';
 
 const config = {
     pageSize: 9, // 3x3 grid
-    apiEndpoint: 'http://localhost:8081/route/all'
+    apiEndpoint: API_CONFIG.BASE_URL+'/route/all'
 };
 
 let currentPage = 0;
@@ -103,7 +104,7 @@ function displayRoutes(routes) {
             console.log('Selected route ID:', routeId);
 
             localStorage.setItem('routeId', routeId);
-             window.location.href = 'http://localhost:8080/fe/pages/routes/routePage.html';
+             window.location.href = API_CONFIG.FRONT_URL+'/pages/routes/routePage.html';
         });
     });
 

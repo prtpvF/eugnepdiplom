@@ -1,5 +1,3 @@
-import {showError} from 'http://localhost:8080/fe/errorMessageModule.js';
-
 export async function updateToken() {
     const refreshToken = localStorage.getItem( 'refresh_token');
 

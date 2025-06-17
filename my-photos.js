@@ -1,3 +1,5 @@
+import { API_CONFIG } from  './constants'
+
 document.addEventListener('DOMContentLoaded', () => {
     const gallery = document.querySelector('.gallery-container');
     const prevBtn = document.querySelector('#prevPage');
@@ -9,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const loadPhotos = async (page) => {
         try {
-            const response = await fetch(`http://localhost:8081/image/my?page=${page}&size=${pageSize}`);
+            const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE +`/my?page=${page}&size=${pageSize}`);
             if (!response.ok) throw new Error('Ошибка загрузки');
 
             const data = await response.json();

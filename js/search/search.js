@@ -1,5 +1,6 @@
 // search.js
-import { getImageMap } from "http://localhost:8080/fe/map.js";
+import { getImageMap } from "map";
+import { API_CONFIG } from '../../constants';
 
 let currentGroup = 0;
 let totalGroups = 0;
@@ -13,7 +14,7 @@ let errorToast = document.getElementById("error-toast");
 
     async function loadSearchResults(value) {
         try {
-            const response = await fetch(`http://localhost:8081/place/findByParam?value=${value}`);
+            const response = await fetch(API_CONFIG.BASE_URL+`/place/findByParam?value=${value}`);
 
 
             if (!response.ok) {
