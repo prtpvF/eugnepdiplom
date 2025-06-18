@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!photoItem) return;
 
         try {
-            const response = await fetch(`http://localhost:8081/image/${photoItem.dataset.id}`, {
+            const response = await fetch(API_CONFIG.BASE_URL+API_CONFIG.ENDPOINTS.IMAGE+`/${photoItem.dataset.id}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
