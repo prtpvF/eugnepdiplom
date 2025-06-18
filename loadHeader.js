@@ -34,7 +34,7 @@ import { API_CONFIG } from  'https://effortless-douhua-d77333.netlify.app/consta
         } else {
 
             try {
-                const response = await axios.get('https://diplom-5sra.onrender.com/person/account', {
+                const response = await axios.get('https://diplom-5sra.onrender.com/backend/person/account', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
