@@ -1,5 +1,5 @@
-import { API_CONFIG } from "http://localhost:8080/fe/constants.js";
-import { showError } from 'http://localhost:8080/fe/errorMessageModule.js';
+import { API_CONFIG } from "https://effortless-douhua-d77333.netlify.app/constants.js";
+import { showError } from 'https://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
 
 function getUsernameFromToken() {
     const token = localStorage.getItem('access_token');
