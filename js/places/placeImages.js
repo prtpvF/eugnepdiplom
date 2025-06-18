@@ -61,7 +61,7 @@ function createImageCard(image) {
 
     const img = document.createElement('img');
     img.className = 'place-image';
-    img.src = image.url || API_CONFIG.BASE_URL +image.pathToFile || '/images/default-place.jpg';
+    img.src = image.url || image.pathToFile || '/images/default-place.jpg';
     img.alt = `Image of place ${image.id}`;
     img.loading = 'lazy'; // Ленивая загрузка
 

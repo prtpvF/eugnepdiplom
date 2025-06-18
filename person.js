@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             photoGrid.innerHTML = allPhotos.slice(0, photosToShow).map(photo => `
                 <div class="photo-item" data-id="${photo.id}">
-                    <img src="${API_CONFIG.BASE_URL + photo.pathToFile}" alt="Моя фотография">
+                    <img src="${photo.pathToFile}" alt="Моя фотография">
                 </div>
             `).join('');
         }

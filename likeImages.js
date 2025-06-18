@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
             userData.content.forEach(photo => {
                 photoGrid.innerHTML += `
                 <div class="photo-item" data-id="${photo.id}">
-                    <img src="${API_CONFIG.BASE_URL + photo.pathToFile}" alt="Фотография">
+                    <img src="${photo.pathToFile}" alt="Фотография">
                 </div>
             `;
 

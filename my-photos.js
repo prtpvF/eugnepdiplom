@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const renderGallery = (photos) => {
         gallery.innerHTML = photos.map(photo => `
             <div class="photo-card">
-                <img src="${API_CONFIG.BASE_URL + photo.pathToFile}" alt="${photo.place?.name || 'Фото'}" class="photo-thumbnail">
+                <img src="${photo.pathToFile}" alt="${photo.place?.name || 'Фото'}" class="photo-thumbnail">
                 <div class="photo-details">
                     <div class="info-item">
                         <div class="info-label">Место</div>

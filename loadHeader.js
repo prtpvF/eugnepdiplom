@@ -44,7 +44,7 @@ import { API_CONFIG } from  'https://effortless-douhua-d77333.netlify.app/consta
                     login.style.display = 'none'
                     if (response.data.pathToProfileImage) {
                         console.log("test")
-                        profileAvatar.src = API_CONFIG.BASE_URL + response.data.pathToProfileImage;
+                        profileAvatar.src = response.data.pathToProfileImage;
                         profileAvatar.style.width = "40px"
                         profileAvatar.style.height = "40px"
                         account.classList.add('has-avatar');

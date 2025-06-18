@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
             photoItem.dataset.id = photo.id;
 
             const img = document.createElement('img');
-            img.src = API_CONFIG.BASE_URL + photo.pathToFile;
+            img.src = photo.pathToFile;
             img.alt = 'Фотография';
 
             photoItem.appendChild(img);
