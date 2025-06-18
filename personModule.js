@@ -6,7 +6,7 @@ export async function getPerson() {
 
     try {
         const response = await fetch(
-            API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.PERSON + '/person/account',
+            API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.PERSON + '/account',
             {
                 method: 'GET',
                 headers: { Authorization: `Bearer ${token}` }
