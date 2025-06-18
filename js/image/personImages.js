@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
 
             if (response.status === 401) {
-                window.location.href = 'http://localhost:8080/fe/pages/login.html';
+                window.location.href = 'https://effortless-douhua-d77333.netlify.app/pages/login.html';
                 return;
             }
 
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const photoDetails = await response.json();
             localStorage.removeItem('photo');
             localStorage.setItem('photo', JSON.stringify(photoDetails));
-            window.location.href = 'http://localhost:8080/fe/pages/image/imagePage.html';
+            window.location.href = 'https://effortless-douhua-d77333.netlify.app/pages/image/imagePage.html';
         } catch (error) {
             showError('Ошибка сети');
             console.error(error);

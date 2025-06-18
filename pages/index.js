@@ -142,26 +142,29 @@ async function handleLogin(form) {
 
 async function saveImage(form) {
     const formData = new FormData(form);
-    formData.append('placeId', localStorage.getItem("placeId"));
-
-        const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.IMAGE}`, {
-            method: 'POST',
-            body: formData,
+    console.log(localStorage.getItem("placeId"))
+    const placeId = localStorage.getItem("placeId");
+    const response = await axios.post(
+        API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.IMAGE,
+        formData,
+        {
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                'Content-Type': 'multipart/form-data',
+                'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
             },
-            credentials: 'include'
-        });
-
-        const status =  response.status;
-
-        if(status === 200) {
-           showError("фотография успешно сохраненна", status)
-            window.location.href = API_CONFIG.FRONT_URL + '/pages/account.html';
+            params: { placeId },
         }
-        if(status !== 200) {
-            showError(response.message, status);
-        }
+    );
+
+    const status =  response.status;
+
+    if(status === 200) {
+        showError("фотография успешно сохраненна", status)
+        window.location.href = 'https://effortless-douhua-d77333.netlify.app/pages/account.html';
+    }
+    if(status !== 200) {
+        showError(response.message, status);
+    }
 }
 
 function setupOutsideClickHandler(containerId) {
