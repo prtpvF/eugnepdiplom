@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     async function loadPhotos(page) {
         try {
-            const url = new URL('http://localhost:8081/image/byPerson');
+            const url = new URL(API_CONFIG.BASE_URL+API_CONFIG.ENDPOINTS.IMAGE+'/byPerson');
             const params = new URLSearchParams({
                 username: authorUsername,
                 page: page,
