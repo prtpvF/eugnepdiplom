@@ -1,6 +1,6 @@
 import { getImageMap } from 'https://effortless-douhua-d77333.netlify.app/map.js';
 import { showError } from 'https://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
-import { updateComments, initComments } from 'hhttps://effortless-douhua-d77333.netlify.app/commentModule.js';
+import { updateComments, initComments } from 'https://effortless-douhua-d77333.netlify.app/commentModule.js';
 import { getPerson } from "https://effortless-douhua-d77333.netlify.app/personModule.js";
 import { updateLike } from "https://effortless-douhua-d77333.netlify.app/like.js";
 import { API_CONFIG } from "https://effortless-douhua-d77333.netlify.app/constants.js";
