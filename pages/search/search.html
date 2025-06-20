@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Image</title>
-    <link rel="stylesheet" href="../style/search.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-          crossorigin=""/>
-    <link rel="stylesheet" href="../style/header.css">
+    <link rel="stylesheet" href="../style/search.css" />
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+            crossorigin=""
+    />
+    <link rel="stylesheet" href="../style/header.css" />
 </head>
 <body>
 <main class="main-container">
@@ -17,13 +20,12 @@
         <div class="map-container" id="mapContainer" style="display: none">
             <div id="map" style="display: none"></div>
         </div>
-
     </div>
 
     <div class="multi-carousel-container">
         <button class="carousel-btn prev-btn">
             <svg viewBox="0 0 24 24" width="24" height="24">
-                <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none" />
             </svg>
         </button>
 
@@ -33,21 +35,26 @@
 
         <button class="carousel-btn next-btn">
             <svg viewBox="0 0 24 24" width="24" height="24">
-                <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" />
             </svg>
         </button>
     </div>
 
-
-
+    <!-- Пагинация -->
+    <div class="pagination-controls" id="pagination-controls" style="margin-top: 20px; text-align: center;">
+        <button id="prevPage">Предыдущая</button>
+        <span id="pageInfo" style="margin: 0 10px;"></span>
+        <button id="nextPage">Следующая</button>
+    </div>
 </main>
 
-<script type="module" src="/js/search/search.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+<script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
-<script type="module" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        crossorigin=""
+></script>
+<script type="module" src="/js/search/search.js"></script>
 <script type="module" src="/loadHeader.js"></script>
 <script src="/loadFooter.js"></script>
 </body>
