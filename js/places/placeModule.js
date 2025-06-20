@@ -47,7 +47,12 @@ function renderPlaces(places) {
 
         const placeName = document.createElement('h3');
         placeName.className = 'place-name';
-        placeName.textContent = place.name;
+        var name = place?.suburb ? place.suburb : place.name;
+
+        if (place.street) {
+            name = name + " " + place.street
+        }
+        placeName.textContent = name
 
         const mapContainer = document.createElement('div');
         mapContainer.className = 'place-map';
