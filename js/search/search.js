@@ -23,7 +23,11 @@ let errorToast = document.getElementById("error-toast");
 
 
             const data = await response.json();
-            placeName.innerText = data?.suburb ? 'Фотографии с места: ' + data.suburb : 'Фотографии с места: ' + data.name;
+            var placeNameText = data?.suburb ? 'Фотографии с места: ' + data.suburb : 'Фотографии с места: ' + data.name;
+            if (data.place) {
+                placeName.innerText = placeNameText + " " + data.street;
+            }
+            placeName.innerText = placeNameText;
             placeName.style.display = 'block';
             map.style.display = 'block';
             mapContainer.style.display = 'block';

@@ -71,20 +71,24 @@ document.addEventListener('DOMContentLoaded', () => {
 async function handleRegistration(form) {
     const formData = new FormData(form);
 
-    const username = formData.get('username'); // или другое имя поля
-    const password = formData.get('password'); // или другое имя поля
+    const username = formData.get('username');
+    const password = formData.get('password');
+    const email = formData.get('email');
+    const firstName = formData.get('firstName');
+    const lastName = formData.get('lastName');
 
     const englishOnlyRegex = /^[A-Za-z0-9]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const latinOnlyRegex = /^[A-Za-z]+$/;
 
-    if (username && !englishOnlyRegex.test(username)) {
-        showError("только латиница", 400);
-        return;
-    }
+    const isValid =
+        validateField(username, "юзернейм", englishOnlyRegex, "Только латиница и цифры!") &&
+        validateField(password, "пароль", englishOnlyRegex, "Только латиница и цифры!") &&
+        validateField(email, "почту", emailRegex, "Неверный формат почты!");
+        validateField(firstName, "имя", latinOnlyRegex, "Только латиница");
+        validateField(lastName, "фамилию", latinOnlyRegex, "Только латиница");
 
-    if (password && !englishOnlyRegex.test(password)) {
-        showError("только латиница", 400);
-        return;
-    }
+    if (!isValid) return;
 
     try {
         const response = await axios.post(
@@ -111,6 +115,19 @@ async function handleRegistration(form) {
         }
     }
 }
+
+function validateField(value, fieldName, regex, errorMessage) {
+    if (!value) {
+        showError(`Введите ${fieldName}!`, 400);
+        return false;
+    }
+    if (regex && !regex.test(value)) {
+        showError(errorMessage || `Некорректный формат ${fieldName}!`, 400);
+        return false;
+    }
+    return true;
+}
+
 async function handleLogin(form) {
     const formData = new FormData(form);
 
@@ -216,7 +233,11 @@ function handlePlaceSelection(place) {
         const placeId = savedPlace.id?.toString() || savedPlace.id;
         localStorage.setItem("placeId", placeId);
 
-    const name = place?.suburb ? place.suburb : place.name;
+    var name = place?.suburb ? place.suburb : place.name;
+
+    if (place.street) {
+        name = name + " " + place.street
+    }
     locationInput.value = `${name}`;
 
     if (selectedPlaceInput) {
@@ -230,7 +251,11 @@ function handlePlaceSelection(place) {
 function createPlaceElement(place, onClick) {
     const placeDiv = document.createElement('div');
     placeDiv.classList.add('place-item');
-    const name = place?.suburb ? place.suburb : place.name;
+    let name = place?.suburb ? place.suburb : place.name;
+
+    if (place.street) {
+        name = name + " " + place.street
+    }
     console.log(place.suburb)
     console.log(place.name)
     placeDiv.innerHTML = `

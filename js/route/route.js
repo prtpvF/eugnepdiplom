@@ -26,6 +26,10 @@ function fetchPlaces() {
                 option.value = place.placeId;
 
                 let displayText = place?.suburb ? place.suburb : place.name;
+
+                if (place.street) {
+                    displayText = displayText + " " + place.street;
+                }
                 console.log(place.suburb);
                 console.log(place.name);
 
