@@ -281,6 +281,58 @@ body {
     min-height: 20vh;
 }
 
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+    background-color: cadetblue;
+    color: white;
+    border: none;
+}
+
+.pagination button:disabled {
+    background-color: #ced4da;
+    border-color: #ced4da;
+    cursor: not-allowed;
+    transform: none;
+    color: #666;
+}
+
+.prevPage  {
+    padding: 10px 20px;
+    background-color: white;
+    color: cadetblue;
+    border-color: cadetblue;
+    border-radius: 10px;
+    border-style: solid;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    min-width: 100px;
+}
+
+.nextPage {
+    padding: 10px 20px;
+    background-color: white;
+    color: cadetblue;
+    border-color: cadetblue;
+    border-radius: 10px;
+    border-style: solid;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    min-width: 100px;
+}
+
+
+
 .map-container {
     flex: 2;
     position: relative;

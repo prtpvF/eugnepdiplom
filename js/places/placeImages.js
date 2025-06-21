@@ -37,13 +37,31 @@ async function loadImagesByPlace(placeId, page = 0, size = 12) {
 
 function renderImages(images) {
     const container = document.getElementById('imagesContainer');
+    const text = document.getElementById('placeNameText');
     container.innerHTML = '';
 
     if (!images?.length) {
         container.innerHTML = '<div class="no-images">No images found for this place</div>';
         return;
     }
+    let place = images[0];
+    let placeNameText = '';
+    if (place.suburb) {
+        placeNameText = 'Фотографии с места: ' + place.suburb;
+    } else if (place.name) {
+        placeNameText = 'Фотографии с места: ' + place.name;
+    }
 
+    if (place.street) {
+        placeNameText += ' ' + place.street;
+    }
+
+    text.innerText = placeNameText;
+    text.style.display = 'block';
+    text.style.textAlign = 'center';
+    text.style.color = 'cadetblue';
+    text.style.marginTop = '10px';
+    text.style.marginBottom = '0';
     images.forEach(image => {
         const imageCard = createImageCard(image);
         imageCard.onclick = function () {
