@@ -37,7 +37,7 @@ async function loadImagesByPlace(placeId, page = 0, size = 12) {
 
 function renderImages(images) {
     const container = document.getElementById('imagesContainer');
-    const text = document.getElementById('placeNameText');
+    const text = document.getElementById('placeName');
     container.innerHTML = '';
 
     if (!images?.length) {
