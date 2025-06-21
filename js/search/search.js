@@ -56,6 +56,8 @@ async function loadSearchResults(value) {
         placeName.style.display = 'block';
         placeName.style.textAlign = 'center';
         placeName.style.color = 'cadetblue';
+        placeName.style.marginTop = '10px';
+        placeName.style.marginBottom = '0';
 
         map.style.display = 'block';
         mapContainer.style.display = 'block';
