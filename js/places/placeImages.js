@@ -63,7 +63,7 @@ function renderImages(images) {
     text.style.display = 'block';
     text.style.textAlign = 'center';
     text.style.color = 'cadetblue';
-    text.style.marginTop = '10px';
+    text.style.marginTop = '10%';
     text.style.marginBottom = '0';
     images.forEach(image => {
         const imageCard = createImageCard(image);
