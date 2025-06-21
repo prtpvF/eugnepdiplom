@@ -48,6 +48,7 @@ function renderImages(images) {
     console.log(place)
     console.log('test')
     let placeNameText = '';
+    console.log(place.place.name);
     if (place.place.suburb) {
         placeNameText = 'Фотографии с места: ' + place.place.suburb;
     } else if (place.place.name) {
