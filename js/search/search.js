@@ -54,6 +54,8 @@ async function loadSearchResults(value) {
 
         placeName.innerText = placeNameText;
         placeName.style.display = 'block';
+        placeName.style.textAlign = 'center';
+        placeName.style.color = 'cadetblue';
 
         map.style.display = 'block';
         mapContainer.style.display = 'block';
