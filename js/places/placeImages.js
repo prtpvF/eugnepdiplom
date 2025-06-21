@@ -48,14 +48,14 @@ function renderImages(images) {
     console.log(place)
     console.log('test')
     let placeNameText = '';
-    if (place.suburb) {
-        placeNameText = 'Фотографии с места: ' + place.suburb;
-    } else if (place.name) {
-        placeNameText = 'Фотографии с места: ' + place.name;
+    if (place.place.suburb) {
+        placeNameText = 'Фотографии с места: ' + place.place.suburb;
+    } else if (place.place.name) {
+        placeNameText = 'Фотографии с места: ' + place.place.name;
     }
 
-    if (place.street) {
-        placeNameText += ' ' + place.street;
+    if (place.place.street) {
+        placeNameText += ' ' + place.place.street;
     }
 
     text.innerText = placeNameText;
