@@ -7,9 +7,19 @@ import { API_CONFIG } from  'https://effortless-douhua-d77333.netlify.app/consta
                 document.body.insertAdjacentHTML("afterbegin", data);
                 setupDropdownMenu();
                 setupSearch();
+                footerMail();
             })
             .catch(error => console.error("Ошибка загрузки header:", error));
     });
+
+    function footerMail() {
+        document.getElementById('email-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log("it works properly")
+
+            window.open('https://mail.google.com/mail/?view=cm&to=bernejevgenij@gmail.com', '_blank');
+        });
+    }
 
     async function setupDropdownMenu() {
         const dropdownMenu = document.getElementById("routesDropdown");
