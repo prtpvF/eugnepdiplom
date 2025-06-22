@@ -56,13 +56,9 @@
     <script>
         document.getElementById('email-link').addEventListener('click', function(e) {
             e.preventDefault();
+            console.log("it works properly")
 
-            if (navigator.userAgent.includes('Windows')) {
                 window.open('https://mail.google.com/mail/?view=cm&to=bernejevgenij@gmail.com', '_blank');
-            }
-            else {
-                window.location.href = 'mailto:bernejevgenij@gmail.com';
-            }
         });
     </script>
 </footer>
