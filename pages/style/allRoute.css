@@ -89,11 +89,10 @@ body {
     white-space: pre-line;
     flex-grow: 1;
 
-    max-height: calc(1.5em * 3.5); /* Ограничение по высоте (3.5 строки) */
-    overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Число строк перед обрезкой */
+    -webkit-line-clamp: 5; /* Макс. число строк */
     -webkit-box-orient: vertical;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
