@@ -9,6 +9,23 @@ body {
     background: #fff;
 }
 
+.delete-route-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    width: 200px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+}
+
 .main-container {
     flex: 1;
     padding: 20px;

@@ -1,6 +1,6 @@
-import { getImageMap } from 'https://effortless-douhua-d77333.netlify.app/map.js';
-import { showError } from 'https://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
-import { API_CONFIG } from  'https://effortless-douhua-d77333.netlify.app/constants.js'
+import {getImageMap} from 'https://effortless-douhua-d77333.netlify.app/map.js';
+import {showError} from 'https://effortless-douhua-d77333.netlify.app/errorMessageModule.js';
+import {API_CONFIG} from 'https://effortless-douhua-d77333.netlify.app/constants.js'
 
 let currentGroup = 0;
 let totalGroups = 0;
@@ -12,7 +12,6 @@ let prevBtn, nextBtn, container;
 const addPhotoButton = document.getElementById("add-photo-btn");
 const addCommentForm = document.getElementById("comment-form");
 
-// Основные функции приложения
 async function loadRouteData(routeId) {
     try {
         const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.ROUTE + `/${routeId}`);
@@ -22,7 +21,7 @@ async function loadRouteData(routeId) {
             localStorage.setItem('route', JSON.stringify(data));
             updateMap(data);
             return data;
-        } else if(response.status === 401) {
+        } else if (response.status === 401) {
             window.location.replace('./login.html');
         } else {
             const error = await response.json();
@@ -53,7 +52,6 @@ function createCarousel(images) {
     container.innerHTML = '';
     container.classList.remove('one-image', 'two-images');
 
-    // Обработка отсутствия изображений
     if (!currentImages.length) {
         container.innerHTML = '<div class="multi-image-item"><p>No images available</p></div>';
         prevBtn.disabled = nextBtn.disabled = true;
@@ -61,11 +59,9 @@ function createCarousel(images) {
         return;
     }
 
-    // Классы для разного количества изображений
     if (currentImages.length === 1) container.classList.add('one-image');
     if (currentImages.length === 2) container.classList.add('two-images');
 
-    // Создание элементов карусели
     currentImages.forEach(item => {
         const itemDiv = document.createElement('div');
         itemDiv.className = 'multi-image-item';
@@ -219,7 +215,7 @@ function formatDate(dateString) {
 }
 
 async function postComment(routeId, commentData) {
-    const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.COMMENT +`/new/route`, {
+    const response = await fetch(API_CONFIG.BASE_URL + API_CONFIG.ENDPOINTS.COMMENT + `/new/route`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -276,11 +272,49 @@ function setupCommentForm(routeId) {
     });
 }
 
+async function deleteCurrentRoute() {
+
+    const routeId = localStorage.getItem('routeId');
+    if (!routeId) return;
+
+    try {
+        const response = await fetch(`${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.ROUTE}/${routeId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+            }
+        });
+
+        if (response.ok) {
+            window.location.href = 'https://effortless-douhua-d77333.netlify.app/pages/home';
+        } else {
+           showError('что-то пошло не так', 400)
+        }
+    } catch (error) {
+        console.error('Delete error:', error);
+        showError('Не удалось удалить маршрут');
+    }
+}
+
+function setupRouteActions() {
+    const deleteBtn = document.getElementById('delete-route-btn');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', deleteCurrentRoute);
+
+        // Показываем только авторизованным пользователям
+        deleteBtn.style.display = localStorage.getItem('access_token') ? 'flex' : 'none';
+    }
+}
+
 function adjustLayout() {
     const commentsContainer = document.getElementById('comments-container');
     const commentForm = document.getElementById('comment-form');
     const footer = document.querySelector('footer');
+    const deleteButton = document.getElementById('delete-route-btn');
 
+    if (getUsernameFromToken() === 'ADMIN') {
+        deleteButton.style.display = 'block';
+    }
     if (!commentsContainer || !commentForm || !footer) return;
 
     const availableHeight = window.innerHeight - footer.offsetHeight - 100;
@@ -299,6 +333,21 @@ function getUsernameFromToken() {
     try {
         const payload = JSON.parse(atob(token.split('.')[1]));
         return payload.username || payload.sub;
+    } catch (e) {
+        console.error('Error parsing token:', e);
+        return null;
+    }
+}
+
+function getRoleFromToken() {
+    const token = localStorage.getItem('access_token');
+    if (!token) return null;
+
+    try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        return {
+            role: payload.role || payload.sub || null
+        };
     } catch (e) {
         console.error('Error parsing token:', e);
         return null;
@@ -381,7 +430,7 @@ function setupPhotoUpload() {
         if (!file.type.match('image.*')) return;
 
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             const img = document.createElement('img');
             img.src = e.target.result;
             img.className = 'preview-image';
@@ -442,14 +491,11 @@ function setupPhotoUpload() {
     }
 }
 
-// Инициализация приложения
 document.addEventListener('DOMContentLoaded', async () => {
-    // Проверка авторизации
     const isAuthenticated = !!localStorage.getItem('access_token');
     addCommentForm.style.display = isAuthenticated ? '' : 'none';
     addPhotoButton.style.display = isAuthenticated ? '' : 'none';
 
-    // Загрузка данных маршрута
     const routeId = localStorage.getItem('routeId');
     if (!routeId) {
         showError('Маршрут не выбран');
@@ -468,6 +514,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupPhotoUpload();
     setupCommentForm(routeId);
     adjustLayout();
+    setupRouteActions();
 
     window.addEventListener('load', adjustLayout);
     window.addEventListener('resize', adjustLayout);
