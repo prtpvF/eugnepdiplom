@@ -298,13 +298,28 @@ async function deleteCurrentRoute() {
 
 function setupRouteActions() {
     const deleteBtn = document.getElementById('delete-route-btn');
-    if (deleteBtn) {
-        deleteBtn.addEventListener('click', deleteCurrentRoute);
 
-        // Показываем только авторизованным пользователям
-        deleteBtn.style.display = localStorage.getItem('access_token') ? 'flex' : 'none';
+    if (!deleteBtn) return;
+
+    const token = localStorage.getItem('access_token');
+    let isAdmin = false;
+
+    if (token) {
+        try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            isAdmin = payload.role === 'ADMIN';
+        } catch (error) {
+            console.error('Ошибка при декодировании токена:', error);
+        }
+    }
+
+    deleteBtn.style.display = isAdmin ? 'flex' : 'none';
+
+    if (isAdmin) {
+        deleteBtn.addEventListener('click', deleteCurrentRoute);
     }
 }
+
 
 function adjustLayout() {
     const commentsContainer = document.getElementById('comments-container');
